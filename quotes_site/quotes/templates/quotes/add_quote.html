@@ -1,0 +1,40 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <h2>Add new quote</h2>
+</div>
+
+<form method="POST" action="{% url 'quotes:add_quote' %}">
+    {% csrf_token %}
+    <div style="padding: 10px">
+        <label> Quote:
+        <div>{{ form.quote }}</div>
+        </label>
+        <span>{{ form.errors.quote }}</span>
+    </div>
+    <div style="padding: 10px">
+        <label> Select author:
+            <div><select name="authors" required>
+                {% for author in authors %}
+                <option value="{{author}}">{{author}}</option>
+                {% endfor %}
+            </select></div>
+        </label>
+    </div>
+    <div style="padding: 10px">
+        <label> Select tags:
+            <div><select name="tags" multiple="multiple" required>
+                {% for tag in tags %}
+                <option value="{{tag}}">{{tag}}</option>
+                {% endfor %}
+            </select></div>
+        </label>
+    </div>
+    <div class="grid" style="padding: 10px">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+    </div>
+</form>
+{% endblock %}

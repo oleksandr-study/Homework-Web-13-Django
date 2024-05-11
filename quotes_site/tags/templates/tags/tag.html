@@ -1,0 +1,23 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+
+<div class="row">
+    <h2>Add new tag</h2>
+</div>
+
+<form method="POST" action="{% url 'tags:tag' %}">
+    {% csrf_token %}
+    <div style="padding: 10px">
+        <label>Enter the tag name:
+            <div>{{form.name}}</div>
+        </label>
+        <span>{{ form.errors.name }}</span>
+    </div>
+    <div class="grid" style="padding: 10px">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+    </div>
+</form>
+
+{% endblock %}
